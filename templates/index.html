@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OWASP Test Application</title>
+</head>
+<body>
+
+<h1>OWASP Test Application</h1>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul>
+    {% for category, message in messages %}
+      <li><strong>{{ category }}:</strong> {{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<hr>
+
+<h2>1. SQL Injection</h2>
+<form action="/login" method="post">
+    Username: <input type="text" name="username"><br>
+    Password: <input type="text" name="password"><br>
+    <button type="submit">Login</button>
+</form>
+
+<h2>2. Command Injection</h2>
+<form action="/ping" method="post">
+    Host: <input type="text" name="host">
+    <button type="submit">Ping</button>
+</form>
+
+<h2>3. Path Traversal</h2>
+<form action="/read" method="post">
+    File: <input type="text" name="file">
+    <button type="submit">Read file</button>
+</form>
+
+<h2>4. Insecure Deserialization</h2>
+<form action="/load" method="post">
+    Pickle data: <input type="text" name="data">
+    <button type="submit">Load</button>
+</form>
+
+<h2>5. Broken Access Control</h2>
+<form action="/admin" method="post">
+    Token: <input type="text" name="token">
+    <button type="submit">Admin</button>
+</form>
+
+<h2>6. Unsafe subprocess</h2>
+<form action="/run" method="post">
+    Command: <input type="text" name="cmd">
+    <button type="submit">Run</button>
+</form>
+
+</body>
+</html>
