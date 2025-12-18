@@ -1,6 +1,6 @@
 import os
 import sqlite3
-import pickle
+import json
 import subprocess
 from flask import Flask, request, render_template, redirect, url_for, flash
 
@@ -90,8 +90,8 @@ def read_file():
 @app.route("/load", methods=["POST"])
 def load_object():
     try:
-        data = request.form.get("data").encode()
-        obj = pickle.loads(data)
+        data = request.form.get("data")
+        obj = json.loads(data)
         flash(f"Object loaded: {obj}", "success")
     except Exception as e:
         flash(f"Deserialization error: {e}", "error")
