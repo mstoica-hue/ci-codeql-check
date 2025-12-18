@@ -26,7 +26,6 @@ def init_db():
     conn.close()
 
 
-# =========================
 # UI
 # =========================
 @app.route("/")
@@ -132,3 +131,4 @@ def run_command():
 if __name__ == "__main__":
     init_db()
     app.run(debug=True, use_reloader=False)
+
